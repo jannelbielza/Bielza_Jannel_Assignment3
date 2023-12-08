@@ -141,15 +141,20 @@ function validateQuantity(quantity, quantity_available) {
 }
 
 //-------------------Assignment2------------------------------------//
+// Handle the login process
 app.post("/process_login", function(request, response){
+    // Extract data from the request body
     let POST = request.body;
     let entered_email = POST['email'].toLowerCase();
     let entered_password = POST['password'];
 
+    // Check for empty email and password
     if (entered_email.length == 0 && entered_password.length == 0) {
         request.query.loginErr = 'Email address and password are required';
     } else if (user_data[entered_email]) {
+        // Check if the entered password is valid
         if (user_data[entered_email].password == entered_password) {
+            // If valid, store user data in a temporary object and redirect to invoice.html
             temp_user['email'] = entered_email;
             temp_user['name'] = user_data[entered_email].name;
     
@@ -165,26 +170,27 @@ app.post("/process_login", function(request, response){
     } else {
         request.query.loginErr = 'Invalid email';
     }
+    // Redirect to login.html with query parameters
     request.query.email = entered_email;
     let params = new URLSearchParams(request.query);
     response.redirect(`login.html?${params.toString()}`);
 });
 
-
+// Handle continuing shopping after login
 app.post('/continue_shopping', function(request, response) {
+    // Redirect to products_display.html with user data parameters
     let params = new URLSearchParams(temp_user);
     response.redirect(`/products_display.html?${params.toString()}`);
 });
 
+// Handle product purchase and logout
 app.post('/purchase_Logout', function(request, response) {
+    // Update product quantities and write changes to products.json
     for (let i in products) {
-
-
-        products[i].qty_sold += Number(temp_user[`qty${i}`])
+        products[i].qty_sold += Number(temp_user[`qty${i}`]);
         products[i].quantity_available = products[i].quantity_available - Number(temp_user[`qty${i}`]);
     }
    
-    
     fs.writeFile(__dirname + '/products.json', JSON.stringify(products), 'utf-8', (err) => {
         if (err) {
             console.error('Error uploading products data', err);
@@ -193,35 +199,40 @@ app.post('/purchase_Logout', function(request, response) {
         }
     })
 
+    // Clear temporary user data and redirect to products_display.html
     delete temp_user['email'];
     delete temp_user['name'];
     response.redirect('/products_display.html');
-
 });
 
+// Handle user registration
 let registration_errors = {};
 
 app.post("/process_register", function (request, response) {
+    // Extract registration data from the request body
     let reg_name = request.body.name;
     let reg_email = request.body.email.toLowerCase();
     let reg_password = request.body.password;
     let reg_confirm_password = request.body.confirm_password;
 
-     // Validate Email Address
-     let emailValidationResult = validateEmailAddress(reg_email);
-     if (emailValidationResult !== "") {
-         registration_errors['email_type'] = emailValidationResult;
-     }
- 
-     // Validate Password
-     let passwordValidationResult = validatePassword(reg_password);
-     if (passwordValidationResult !== "") {
-         registration_errors['password_type'] = passwordValidationResult;
-     }
+    // Validate email address
+    let emailValidationResult = validateEmailAddress(reg_email);
+    if (emailValidationResult !== "") {
+        registration_errors['email_type'] = emailValidationResult;
+    }
 
+    // Validate password
+    let passwordValidationResult = validatePassword(reg_password);
+    if (passwordValidationResult !== "") {
+        registration_errors['password_type'] = passwordValidationResult;
+    }
+
+    // Validate and compare confirm password
     validateConfirmPassword(reg_confirm_password, reg_password);
 
-    if(Object.keys(registration_errors).length == 0) {
+    // Check if there are no registration errors
+    if (Object.keys(registration_errors).length == 0) {
+        // Save user data, clear registration errors, and redirect to invoice.html
         user_data[reg_email] = {};
         user_data[reg_email].name = reg_name;
         user_data[reg_email].password = reg_password;
@@ -229,20 +240,18 @@ app.post("/process_register", function (request, response) {
         fs.writeFile(__dirname + '/user_data.json', JSON.stringify(user_data), 'utf-8', (err) => {
             if (err) {
                 console.error('Error updating user data', err);
-            }else {
+            } else {
                 console.log('User data has been updated successfully');
 
                 temp_user['name'] = reg_name;
                 temp_user['email'] = reg_email;
-
-                console.log(temp_user);
-                console.log(user_data);
 
                 let params = new URLSearchParams(temp_user);
                 response.redirect(`/invoice.html?regSuccess&valid&${params.toString()}`);
             }
         });
     } else {
+        // If there are registration errors, redirect to register.html with errors in query parameters
         delete request.body.password;
         delete request.body.confirm_password;
 
@@ -251,14 +260,11 @@ app.post("/process_register", function (request, response) {
     }
 });
 
-
+// Function to validate confirm password
 function validateConfirmPassword(confirm_password, password) {
-
     delete registration_errors['confirm_password_type'];
 
-    console.log(registration_errors);
-
-    if(confirm_password !== password){
+    if (confirm_password !== password) {
         registration_errors['confirm_password_type'] = 'Passwords do not match';
     }
 }

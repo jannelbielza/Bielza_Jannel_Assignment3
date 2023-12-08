@@ -1,0 +1,36 @@
+.card-body button {
+    background-color: blue; /* Green background color */
+    color: #fff; /* White text color */
+    border: none; /* Remove border */
+    padding: 8px 12px; /* Add padding */
+    cursor: pointer; /* Add a pointer cursor */
+    margin: 5px; /* Add margin for spacing */
+    border-radius: 4px; /* Add rounded corners */
+}
+
+.card-body button:hover {
+    background-color: green; /* Darker green color on hover */
+}
+
+.card-body button:active {
+    background-color: darkgreen; /* Even darker green color on click */
+}
+
+.navbar {
+    display: flex;
+    gap: 20px; /* Adjust the gap as needed */
+}
+
+.navbar-logo {
+    max-width: 40px; /* Adjust the max-width as needed */
+    height: auto;
+}
+
+.short-textbox {
+    width: 50px; /* Adjust the width as needed */
+}
+
+#errMsg{
+    color: red;
+    text-align: center;
+}

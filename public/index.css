@@ -1,0 +1,65 @@
+.navbar {
+    display: flex;
+    gap: 20px; /* Adjust the gap as needed */
+}
+
+.navbar-logo {
+    max-width: 40px; /* Adjust the max-width as needed */
+    height: auto;
+}
+
+img {
+    border: 1px solid #ffffff;
+    /* Gray border */
+    border-radius: 4px;
+    /* Rounded border */
+    padding: 5px;
+    /* Some padding */
+    width: 550px;
+    /* Set a small width */
+    animation: rotation 4s infinite linear;
+    /* sets animation to rotate 350*/
+    
+}
+
+
+
+body {
+    text-align: center;
+    background: white;
+}
+
+h1{
+    font-family: 'Palanquin-Dark', sans-serif;
+    font-size: 50px;
+    margin-top: 20px;
+    margin-bottom: -10px;
+    background-color: white;
+    padding-bottom: 1px;
+    padding-top: 1px;
+    color: #0032A0;
+    justify-items: center;
+    height: 110px;
+}
+
+h2{
+    font-family: 'Montserrat', sans serif;
+    font-size: 20px;
+    margin-top: 40px;
+    color: #0032A0;;
+}
+
+/* body styling */
+body {
+    text-align: center;
+    background: white;
+    margin: 0;
+    padding: 0;
+}
+
+.image {
+    justify-content: center;
+    align-items: center;
+    height: 20%; 
+    width: 20%;
+}

@@ -21,11 +21,6 @@
     gap: 20px; /* Adjust the gap as needed */
 }
 
-.navbar-logo {
-    max-width: 40px; /* Adjust the max-width as needed */
-    height: auto;
-}
-
 .short-textbox {
     width: 50px; /* Adjust the width as needed */
 }

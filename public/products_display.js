@@ -1,5 +1,4 @@
 // Assuming 'products_key' is defined earlier in your code
-
 for (let i in products[products_key]) {
     document.querySelector('.row').innerHTML += `
         <div class="col-sm-4">

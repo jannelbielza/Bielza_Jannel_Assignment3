@@ -1,10 +1,8 @@
 <!-- Author: Jannel Bielza -->
 <!-- Assignment 2 -->
 <!-- Index Page -->
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,42 +12,51 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="index.css">
+
+  <script src="./products.js"></script>
+  <script src="./functions.js"></script>
+  <script src="./navbar.js"></script>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <title>Barkada Mart Landing Page</title>
 </head>
-
+<!---Got it from Sal-->
 <body>
-  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="products_display.html">
-        <img src="./images/star.png" alt="Logo" class="navbar-logo">
+  <div id="sticky-navbar">
+    <div id="top-nav" class="py-3">
+      <a href="./cart.html" class="nav-link mx-3 highlight">
+        <span class ="fa-solid fa-cart-shopping highlight" style="color:black"></span>
+        <span id="cart_total"></span>
+        Cart
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-center" id="mynavbar">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="products_display.html">Products</a>
-          </li>
-        </ul>
+      <div id="nav-container"></div>
+    </div>
+  </div>
+
+
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <button class="navbar-toggler" id="toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle naviagation">
+        <span class="fa-solid fa-bars highlight"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="navbar-nav">
+        <li><a href="/index.html" class="nav-link mx-3 highlight" active>Home</a></li>
+        <script>nav_bar(products_key, products)</script>
       </div>
     </div>
   </nav>
-  
+
+</div class="container mt-5">
   <br>
   <h1>
     Barkada Mart
   </h1>
-  <a href="products_display.html">
     <img src="images/star.png" class="logo">
 </a>
-<h2>Click the image to enter!</h2>
+<h2>Click on the links to enter!</h2>
 
 
 
-
+<script src="/cart.js"></script>
 </body>
 </html>

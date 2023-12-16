@@ -13,7 +13,7 @@ window.onload = function() {
     // Loop through form groups with class 'form-group'
     for (let i = 0; i < document.getElementsByClassName('form-group').length; i++) {
         // Get the name attribute of the current form element
-        let inputName = register_form.elements[i].name;
+        let inputName = 'z'.elements[i].name;
 
         // Check if there is an error related to the length of the input
         if (params.has(`${inputName}_length`)) {

@@ -1,1 +1,120 @@
-[{"name":"Salt & Vinegar Cracklings","price":2.99,"image":"./images/cracklings.png","quantity_available":39,"qty_sold":11},{"name":"Fudgee Barr Chocolate Bars","price":8,"image":"./images/fudge.png","quantity_available":32,"qty_sold":18},{"name":"Philippine Brand: Dried Mangoes","price":4.29,"image":"./images/mangos.png","quantity_available":39,"qty_sold":11},{"name":"Piattos Cheese Chips","price":2,"image":"./images/piattos.png","quantity_available":36,"qty_sold":14},{"name":"Vcut Potato Chips","price":2,"image":"./images/vcut.png","quantity_available":37,"qty_sold":13},{"name":"Jolibee Peach Mango Pie","price":10,"image":"./images/peach.png","quantity_available":7,"qty_sold":3}]
+{
+    "snacks": [
+        {
+            "name": "Salt & Vinegar Cracklings",
+            "price": 2.99,
+            "quantity_available": 100,
+            "qty_sold": 0,
+            "image": "./images/cracklings.png"
+        },
+        {
+            "name": "Fudgee Barr Chocolate Bars",
+            "price": 10,
+            "quantity_available": 100,
+            "qty_sold": 0,
+            "image": "./images/fudge.png"
+        },
+        {
+            "name": "Philippine Brand: Dried Mangoes",
+            "price": 10,
+            "quantity_available": 100,
+            "qty_sold": 0,
+            "image": "./images/mangos.png"
+        },
+        {
+            "name": "Piattos Cheese Chips",
+            "price": 10,
+            "quantity_available": 100,
+            "qty_sold": 0,
+            "image": "./images/piattos.png"
+        },
+        {
+            "name": "Vcut Potato Chips",
+            "price": 10,
+            "quantity_available": 100,
+            "qty_sold": 0,
+            "image": "./images/vcut.png"
+        },
+        {
+            "name": "Jolibee Peach Mango Pie",
+            "price": 10,
+            "quantity_available": 100,
+            "qty_sold": 0,
+            "image": "./images/peach.png"
+        }
+    ],
+    "ingredients": [
+        {
+            "name": "Kamayan Ginisang Bagoong",
+            "price": 20,
+            "quantity_available": 100,
+            "qty_sold": 0,
+            "image": "./images/bagoong.png"
+        },
+        {
+            "name": "Mamasita's Breading Mix",
+            "price": 1.35,
+            "quantity_available": 100,
+            "qty_sold": 0,
+            "image": "./images/breading.png"
+        },
+        {
+            "name": "Magic Sarap",
+            "price": 3.75,
+            "quantity_available": 100,
+            "qty_sold": 0,
+            "image": "./images/magic.png"
+        },
+        {
+            "name": "Mamasita's Adobo Mix",
+            "price": 2.49,
+            "quantity_available": 100,
+            "qty_sold": 0,
+            "image": "./images/adobo.png"
+        },
+        {
+            "name": "Florence Salted Shrimp Fry",
+            "price": 10,
+            "quantity_available": 100,
+            "qty_sold": 0,
+            "image": "./images/alamang.png"
+        }
+    ],
+    "Catering Menu": [
+        {
+            "name": "Tortang Talong Platter",
+            "price": 30,
+            "quantity_available": 100,
+            "qty_sold": 0,
+            "image": "./images/talong.png"
+        },
+        {
+            "name": "Bulalo Platter",
+            "price": 50,
+            "quantity_available": 100,
+            "qty_sold": 0,
+            "image": "./images/bulalo.jpg"
+        },
+        {
+            "name": "Crispy Pork Belly Ala Carte",
+            "price": 80,
+            "quantity_available": 100,
+            "qty_sold": 0,
+            "image": "./images/pork.jpg"
+        },
+        {
+            "name": "Sisig Platter",
+            "price": 40,
+            "quantity_available": 100,
+            "qty_sold": 0,
+            "image": "./images/sisig.jpn"
+        },
+        {
+            "name": "One Dozen Pandesal",
+            "price": 15,
+            "quantity_available": 100,
+            "qty_sold": 0,
+            "image": ",/images/pandesal.jpg"
+        }
+    ]
+}

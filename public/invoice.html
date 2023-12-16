@@ -23,13 +23,14 @@
         <h1>Barkada Mart</h1>
         <p>Bringing the Philippines Closer to You</p>
     </div>
+
     <div class="container mt-3">
-        <h3 id = "helloMsg" style = "color: purple"></h3>
+        <h3 id = "vertify" style = "color: purple"></h3>
     </div>
     <br>
 
 <!------------------------creates the table------------------------------------------>
-    <div class="container">
+    <div class="container" id="container">
         <table class="table">
             <thead class="thead-dark">
                 <tr>
@@ -49,17 +50,14 @@
                
             </tfoot>
         </table>
+        <div class="button-container">
+            <form action="invoice" method="POST">
+                <input type="hidden" name="email" id="email">
+                <input type="submit" class="sm-button highlight" value="Continue Shopping" name="continue" onclick="invoice.action='/continue'" style="width:40%">
+                <input type="submit" class="sm-button highlight" value="Complete Purchase" name="logout" onclick="invoice.action='/completepurchase'" style="width:40%">
+            </form>
+        </div>
     </div>
-    
-    <form action="/continue_shopping" method="POST">
-        <input type="submit" value="Continue Shopping?">
-      </form>
-
-      <form action="/purchase_Logout" method="POST">
-        <input type="submit" value="Finish Purchase?">
-      </form>
-       
-    
     <!--<script src="invoice.js" type="module"></script>-->
     <script src="invoice.js"></script>
 </body>

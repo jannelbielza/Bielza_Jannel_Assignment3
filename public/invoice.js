@@ -10,13 +10,25 @@ window.onload = function() {
             </head>
             <body style="text-align: center; margin-top: 10%;">
                 <h2>ERROR: No form submission detected.</h2>
-                <h4>Return to <a href="products_display.html">Home</a></h4> 
+                <h4>Return to <a href="index.html">Home</a></h4> 
             </body>
         `)
-    } else {
-        document.getElementById('helloMsg').innerHTML = `Thank you for your purchase ${params.get('name')}!`;
     }
 }
+
+if (getCookie('user_cookie') != false){
+    user_cookie = getCookie('user_cookie');
+} else {
+    location.href = './login.html';
+    window.stop;
+}
+
+document.getElementById('vertify').innerHTML = `
+    <p> Please vertify that the information shown below is correct: </p>
+    <p> Name: ${user_cookie['name']}</p>
+    <p> Email: ${user_cookie['email']}</p>
+`
+
 //=====================================Global Variables==========================//
 let extended_price = 0;
 let subtotal = 0;
@@ -24,27 +36,30 @@ let shipping = 0;
 let shipping_display = '';
 let total = 0;
 
-let qty = [];
-for (let i in products) {
-    qty.push(params.get(`qty${i}`));
-}
+for (let products_key in shopping_cart){
+    for (let i in shopping_cart[products_key]){
+        let qty = shopping_cart[products_key][i];
+        if (qty == 0 || qty == '') continue;
 
-for (let i in qty) {
-    if (qty[i] == 0 || qty[i] == '') continue;
-
-    extended_price = (params.get(`qty${i}`) * products[i].price).toFixed(2);
-    subtotal += Number(extended_price);
+        extended_price = qty * products[products_key][i].price.toFixed(2);
+        subtotal += Number(extended_price);
 
     document.querySelector('#invoice_table').innerHTML += `
         <tr style="border: none;">
-            <td width="10%"><img src="${products[i].image}" style="border-radius: 5px;" class="invoice-table-image"></td>
-            <td class="invoice-table-item-name">${products[i].name}</td>
-            <td>${qty[i]}</td>
-            <td>$${products[i].price.toFixed(2)}</td>
+            <td width="10%"><img src="${products[products_key][i].image}" style="border-radius: 5px;" class="invoice-table-image"></td>
+            <td class="invoice-table-item-name">${products[products_key][i].name}</td>
+            <td>${qty}</td>
+            <td>${products[products_key][i].quantit_available -qty}</td>
+            <td>$${products[products_key][i].price.toFixed(2)}</td>
             <td>$${extended_price}</td>
             </tr>
             `;
+    }
 }
+
+
+    
+
 
 // Sales tax
 let tax_rate = (4.7/100);

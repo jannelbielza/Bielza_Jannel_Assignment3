@@ -1,1 +1,12 @@
-{"dport@hawaii.edu":{"name":"Dan Port","password":"portspasswords"},"itm352@hawaii.edu":{"name":"ITM 352","password":"grader"},"jbielza@gmail.com":{"name":"Jannel Bielza","password":"jbielza"},"bob@duncan.com":{"name":"Bob Duncan","password":"bob"},"ewr":{"name":"SpongeBob Bob","password":""},"bob@bob.com":{"name":"Bobby Bob","password":""},"":{"name":"","password":""},"danny@danny.com":{"name":"Danny Devito","password":"YBZvXzKQiixCigLDoNa6"},"f@f.com":{"name":"f","password":"f"},"chris@peng.com":{"name":"Chris Peng","password":""},"bacon@bacon.com":{"name":"Chris Bacon","password":"3k1FVEyr62sz"},"re@ecom":{"name":"34","password":"3"},"re@rewr.com":{"name":"rew","password":"3"},"umpa@umpa":{"name":"Umpa Lompa","password":""},"sandy@cheeks.com":{"name":"Sandy Cheeks","password":"Zdy34vWkKCZ7q"}}
+{
+    "itm352@uh.edu": {
+        "name": "ITM 352",
+        "password": "grader",
+        "status": "false"
+    },
+    "jbielza@gmail.com": {
+        "name": "Jannel Bielza",
+        "password": "jbielza",
+        "status": "false"
+    }
+}

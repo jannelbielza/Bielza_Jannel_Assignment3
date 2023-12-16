@@ -11,7 +11,10 @@
     <link rel="stylesheet" href="products.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
     <script type="text/javascript" src="./products.js"></script>
+    <script type="text/javascript" src="/functions.js"></script>
+    <script type="text/javascript" src="/navbar.js"></script>
     <title>Barkada Mart</title>
 </head>
 <div class="container-fluid mt-3 text-center">
@@ -19,42 +22,42 @@
   <p>Bringing the Philippines Closer to You</p>
 </div>
     <!------------------------Nav Bar---------------------------------------->
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="products_display.html">
-            <img src="./images/star.png" alt="Logo" class="navbar-logo">
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse justify-content-center" id="mynavbar">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="index.html">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="products_display.html">Products</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-      <br>
-      <!----------------Login personalization----------------------->
-      <h3 id="helloMsg" style="color: purple;"></h3>
+  <div id="sticky-navbar">
+    <div id="top-nav" class="py-3">
+      <a href="./cart.html" class="nav-link mx-3 highlight">
+        <span class ="fa-solid fa-cart-shopping highlight" style="color:black"></span>
+        <span id="cart_total"></span>
+        Cart
+      </a>
+      <div id="nav-container"></div>
+    </div>
+  </div>
 
-      <!------------------------------------->
-      <br>
-     <!------------------------Error validation-------------------------------------->
-     <!--Red Error Message-->
-     <h3 id="errMsg" style="color: #ff2e2e;"></h3>
 
-    
-
-     <!------------------------products display form---------------------------------------->
-<form action="/process_form" id="productForm" name="productForm"  method="POST">
-    
-</form>
-</body>
-<script type="text/javascript" src="./products_display.js"></script>
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <button class="navbar-toggler" id="toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle naviagation">
+        <span class="fa-solid fa-bars highlight"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="navbar-nav">
+        <li><a href="/index.html" class="nav-link mx-3 highlight" active>Home</a></li>
+        <script>nav_bar(products_key, products)</script>
+      </div>
+    </div>
+  </nav>
+</div>
+<div class="container">
+  <br>
+  <h3 id="errMsg" style="color:red"></h3>
+  <br>
+  <form action="/add_to_cart" method="POST" name="productForm" class="productForm">
+    <script>
+      document.write(`<input type="hidden" name="products_key" value="${products_key}">`)
+    </script>
+  <div class="row"></div>
+  </form>
+  <br>
+  <br>
+<script type="text/javascript" src="/products_display.js"></script>
+<script src="/cart.js"></script>
 </html>

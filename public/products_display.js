@@ -1,104 +1,87 @@
-let params = new URLSearchParams(window.location.search);
+// Assuming 'products_key' is defined earlier in your code
+
+for (let i in products[products_key]) {
+    document.querySelector('.row').innerHTML += `
+        <div class="col-sm-4">
+            <div class="card h-100">
+                <h4 class="card-title"><b>${products[products_key][i].name}</b></h4>
+                <img class="card-img-top" src="${products[products_key][i].image}" alt="Card image">
+                <div class="card-body">
+                    <p class="card-text">$${(products[products_key][i].price)}</p>
+                    <p><b>Available: ${products[products_key][i].quantity_available}</b></p>
+
+                    <button type="button" class="btn btn-secondary" onclick="decrementQuantity(${i})">-</button>
+
+                    <!-- Modified code with inline style for width (e.g., style="width: 50px;") -->
+                    <input type="text" placeholder="Enter Quantity" name="qty${i}" id="qty${i}_entered" class="form-control mb-2" style="width: 50px;" oninput="validateQuantity(this.value, ${(products[products_key][i].quantity_available)}, document.getElementById('qty${[i]}_error'))" value="0">
+
+                    <button type="button" class="btn btn-secondary" onclick="incrementQuantity(${i})">+</button>
+
+                    <tr>
+                        <td style="text-align: left; width: 35%;" id="qty_sold${i}">Sold: ${products[products_key][i].qty_sold}</td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="3" style="padding-top: 10px;">
+                            <input type="submit" value="Add to cart" class="sm-button highlight">
+                        </td>
+                    </tr>
+
+                    <td colspan="3" style="padding-top: 5px;"><div id="qty${[i]}_error" style="color: #ff2e2e;"></div></td>
+                </div>
+            </div>
+        </div>`;
+}
+
+// Add the footer outside the loop
+document.querySelector('.row').innerHTML += `
+    <footer class="text-center py-4">
+        <div class="row">
+            <div class="col">
+                <input type="submit" value="Purchase" class="btn btn-secondary">
+            </div>
+        </div>
+    </footer>`;
+
 
 window.onload = function() {
-    
-
+    let params = new URLSearchParams(window.location.search);
+   
     if (params.has('error')) {
 
         document.getElementById('errMsg').innerHTML = "No quantities selected.";
         setTimeout(() => {
             document.getElementById('errMsg').innerHTML = "";
-        }, 2000);
+        }, 4000);
     }
 
     else if (params.has('inputErr')){
+        alert("Input error!");
         document.getElementById('errMsg').innerHTML = "Please fix errors before continuing.";
         setTimeout(() => {
             document.getElementById('errMsg').innerHTML = "";
-    }, 2000);
+    }, 4000);
 
-    for (let i in products){
-        let qtyInput = productForm[`qty${[i]}_entered`];
-        let qtyError = document.getElementById(`qty${[i]}_error`);
-
-        if (params.get (`qty${i}`) != null){
-            qtyInput.value = params.get(`qty${i}`);
-        }
-
-        let errorMessages = validateQuantity(qtyInput.value, products[i].quantity_available);
-        if (errorMessages.length >0){
-            qtyError.innerHTML = errorMessages.join('<br>');
-            qtyInput.parentElement.style.borderColor = "red";
+    for (let i in products[products_key]){
+        if (params.get(`qty${i}`) == 0){
+            productForm[`qty${i}`].value = '';
         } else {
-            qtyError.innerHTML = "";
-            qtyInput.parentElement.style.borderColor = "black";
-        }
-    }
-    if (params.has('name')) {
-        document.getElementById('helloMsg').innerHTML = `Thank you ${params.get('name')}!`;
-        for (let i in products) {
             productForm[`qty${i}`].value = params.get(`qty${i}`);
+            productForm[`qty${i}`].parentElement.style.borderColor = "red";
         }
+        errors = validateQuantity(params.get(`qty${i}`), products[products_key][i].quantity_available);
+        document.getElementById(`qty${i}_error`).innerHTML = errors.join('');
+        alert(errors);
     }
-}
-
-    const form = document.getElementById('productForm');
-    let formHTML = '';
-
-    for (let i in products) {
-        if (i % 3 === 0) {
-            // Start a new row for every index that's a multiple of 3
-            formHTML += '<div class="container mt-4"><div class="row">';
-        }
-
-        formHTML += `
-            <div class="col-sm-4">
-                <div class="card h-100">
-                    <img class="card-img-top" src="${products[i]["image"]}" alt="Card image">
-                    <div class="card-body">
-                        <h4 class="card-title">${products[i]["name"]}</h4>
-                        <p class="card-text">\$${products[i]["price"].toFixed(2)}</p>
-                        <p> ${products[i]["quantity_available"]} in stock!</p>
-
-                        <p>(${products[i]["qty_sold"]} sold)</p>
-                        
-
-                        <input type="text" placeholder="Enter Quantity" name="qty${i}" id="qty${i}_entered" class="form-control mb-2" oninput="validateQuantity(this.value, ${products[i].quantity_available}, document.getElementById('qty${[i]}_error'))" value="0">
-
-
-                      
-
-
-                        <p id="qty${[i]}_error" class="text-danger qtyError"></p>
-                        
-                        <div class="d-flex justify-content-between">
-                            <button type="button" class="btn btn-secondary" onclick="incrementQuantity(${i})">+</button>
-                            <button type="button" class="btn btn-secondary" onclick="decrementQuantity(${i})">-</button>
-                        </div>
-                    </div>
-                </div>
-            </div>`;
-
-        if (i % 3 === 2 || i == products.length - 1) {
-            // End the row for every third index or the last item
-            formHTML += '</div></div>';
-        }
     }
-
-    formHTML += `
-        <footer class="text-center py-4">
-            <div class="row">
-                <div class="col">
-                    <input type="submit" value="Purchase" class="btn btn-secondary">
-                </div>
-            </div>
-        </footer>`;
-
-    // Push the form content to the DOM
-    form.innerHTML = formHTML;
-
-    for (let i in products) {
-        validateQuantity(document.getElementById(`qty${i}_entered`).value, products[i].quantity_available);
+    if ((typeof shopping_cart[products_key] != 'undefined') && (params.has('inputErr') != true)) {
+        for (let i in shopping_cart[products_key]){
+            if(shopping_cart[products_key][i] == 0){
+                document.getElementById(`qty${[i]}`).value - '';
+            }else {
+                document.getElementById(`qty${[i]}`).value = shopping_cart[products_key][i];
+            }
+        }
     }
 }
 
